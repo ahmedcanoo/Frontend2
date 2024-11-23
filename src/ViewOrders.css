@@ -1,0 +1,146 @@
+/* Container for orders */
+.orders-container {
+  text-align: center;
+  padding: 20px; /* Reduced padding for better spacing */
+  font-family: Arial, sans-serif;
+  max-width: 100%;
+  overflow: hidden; /* Prevents overflow from spilling */
+}
+
+/* Table for orders */
+.orders-table-wrapper {
+  max-height: 500px; /* Limits the height of the table to make it scrollable */
+  overflow-y: auto; /* Enables vertical scrolling */
+  width: 100%;
+}
+
+/* Table itself */
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  text-align: left; /* Ensures the text is aligned properly */
+  display: table;
+}
+
+/* Table headers */
+.orders-table thead {
+  background-color: #f8f9fa;
+}
+
+.orders-table th {
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f0f0f0;
+  font-weight: bold;
+  text-align: center; /* Centers the text in the header */
+}
+
+/* Table rows */
+.orders-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+/* Actions column for buttons */
+.actions-column {
+  display: flex;
+  gap: 10px;
+}
+
+/* View Button Styling */
+.view-button {
+  padding: 5px 10px;
+  background-color: #5bc0de;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* Update Button Styling */
+.update-button {
+  padding: 5px 10px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* Delete Button Styling */
+.delete-button {
+  padding: 5px 10px;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+}
+
+.confirm-button-blue {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.confirm-button-red {
+  padding: 10px 20px;
+  background-color: #d9534f; /* Red button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Cancel button in the modal */
+.cancel-button {
+  padding: 10px 20px;
+  background-color: #ccc; /* Neutral grey color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+/* Status dropdown for order update */
+.status-dropdown {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px 0;
+  width: 100%;
+}

@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './ViewOrders.css'; // Import CSS file for custom styles
+import './ViewOrders.css'; 
 
 function ViewOrders() {
   const [orders, setOrders] = useState([]);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
-  const [message, setMessage] = useState(''); // State for displaying messages
+  const [message, setMessage] = useState(''); 
 
-  const [newStatus, setNewStatus] = useState(""); // Added state for new status
+  const [newStatus, setNewStatus] = useState(""); 
   const navigate = useNavigate();
 
-  // Fetch orders on component mount
   useEffect(() => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get('http://localhost:8001/api/admin/orders');
-        console.log("Fetched Orders:", response.data); // Check if userName is included
+        console.log("Fetched Orders:", response.data); 
         setOrders(response.data);
       } catch (error) {
         console.error("Error fetching orders:", error);
@@ -31,7 +30,7 @@ function ViewOrders() {
 
   const handleUpdate = (order) => {
     setSelectedOrder(order);
-    setNewStatus(order.status);  // Set the current status as the default in the dropdown
+    setNewStatus(order.status); 
     setShowUpdateModal(true);
   };
 
@@ -120,14 +119,13 @@ function ViewOrders() {
         </table>
       </div>
 
-      {/* Update Confirmation Modal */}
       {showUpdateModal && (
         <div className="modal">
           <div className="modal-content">
             <h3>Update Order Status</h3>
             <select
               value={newStatus}
-              onChange={(e) => setNewStatus(e.target.value)} // Handle the status change
+              onChange={(e) => setNewStatus(e.target.value)} 
               className="status-dropdown"
             >
               <option value="Pending">Pending</option>

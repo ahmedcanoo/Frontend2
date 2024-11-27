@@ -30,6 +30,19 @@ const CreateOrder = () => {
       return;
     }
 
+    const currentTime = new Date();
+    const deliveryTime = new Date(formData.deliveryTime);
+    if (isNaN(deliveryTime.getTime())) {
+      setMessage("Invalid delivery time. Please select a valid date and time.");
+      console.error("Error: Delivery time is invalid.");
+      return;
+    }
+    if (deliveryTime < currentTime) {
+      setMessage("Delivery time cannot be in the past.");
+      console.error("Error: Delivery time is in the past.");
+      return;
+    }
+
     fetch("http://localhost:8001/api/orders", {
       method: "POST",
       headers: {
@@ -70,6 +83,11 @@ const CreateOrder = () => {
         console.error("Error:", error);
         setMessage("An error occurred. Please try again.");
       });
+  };
+
+  const getCurrentDateTime = () => {
+    const now = new Date();
+    return now.toISOString().slice(0, 16); 
   };
 
   return (
@@ -116,6 +134,7 @@ const CreateOrder = () => {
             value={formData.deliveryTime}
             onChange={handleChange}
             required
+            min={getCurrentDateTime()} 
             style={styles.input}
           />
         </div>
@@ -141,6 +160,9 @@ const styles = {
   page: {
     padding: '20px',
     textAlign: 'left', 
+    backgroundColor: 'white',  
+    borderRadius: '8px',      
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',  
   },
   header: {
     fontSize: '2rem',
@@ -151,21 +173,23 @@ const styles = {
     marginBottom: '15px',
   },
   input: {
-    width: '100%',
+    width: '90%',
     padding: '10px',
     marginTop: '5px',
     fontSize: '16px',
     border: '1px solid #ccc',
     borderRadius: '5px',
+    backgroundColor: 'white', 
   },
   textarea: {
-    width: '100%',
+    width: '90%',
     padding: '10px',
     marginTop: '5px',
     height: '150px',  
     fontSize: '16px',
     border: '1px solid #ccc',
     borderRadius: '5px',
+    backgroundColor: 'white', 
   },
   button: {
     padding: '10px 20px',

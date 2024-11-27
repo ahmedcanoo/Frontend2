@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './MyOrders.css';  
+import './MyOrders.css';
 
 const MyOrders = () => {
-  const [orders, setOrders] = useState([]); // Initialize orders as an empty array
+  const [orders, setOrders] = useState([]);
   const userId = localStorage.getItem('userId');
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const MyOrders = () => {
       })
         .then(response => response.json())
         .then(data => {
-          setOrders(data || []); // Ensure data is an array, default to empty array if null
+          setOrders(data || []);
         })
         .catch(error => {
           console.error('Error fetching orders:', error);
@@ -29,22 +29,36 @@ const MyOrders = () => {
   return (
     <div className="orders-container">
       <h2 className="heading">My Orders</h2>
-      <ul className="orders-list">
-        {orders.length > 0 ? (
-          orders.map(order => (
-            <li key={order._id} className="order-card">
-              <div className="order-details">
-                <p className="order-info"><strong>Pickup Location:</strong> {order.pickupLocation}</p>
-                <p className="order-info"><strong>Drop-off Location:</strong> {order.dropOffLocation}</p>
-                <p className="order-info"><strong>Status:</strong> {order.status}</p>
-              </div>
-              <Link to={`/order-details/${order.id}`} className="view-details-button">View Details</Link>
-            </li>
-          ))
-        ) : (
-          <p>No orders available.</p> 
-        )}
-      </ul>
+      {orders.length > 0 ? (
+        <div className="table-container">
+          <table className="orders-table">
+            <thead>
+              <tr>
+                <th>Pickup Location</th>
+                <th>Drop-off Location</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map(order => (
+                <tr key={order._id}>
+                  <td>{order.pickupLocation}</td>
+                  <td>{order.dropOffLocation}</td>
+                  <td>{order.status}</td>
+                  <td>
+                    <Link to={`/order-details/${order.id}`} className="view-details-button">
+                      View Details
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p>No orders available.</p>
+      )}
     </div>
   );
 };

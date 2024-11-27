@@ -100,7 +100,6 @@ const OrderDetails = () => {
         <p>Loading order details...</p>  
       )}
 
-
       {showCancelModal && (
         <div className="modal">
           <div className="modal-content">
